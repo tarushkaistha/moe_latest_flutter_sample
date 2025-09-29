@@ -136,38 +136,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.16.0"
-  moengage_cards:
-    dependency: "direct main"
-    description:
-      name: moengage_cards
-      sha256: d3b427c446a44230395a198418ff5cefc0a5b04a135362efc9b8ca56480655ef
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.1.0"
-  moengage_cards_android:
-    dependency: transitive
-    description:
-      name: moengage_cards_android
-      sha256: "3ef663b57fbc858ecdb898a7df1a256688f0732bd2d2aca51dcf6edb4739bd47"
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.1.0"
-  moengage_cards_ios:
-    dependency: transitive
-    description:
-      name: moengage_cards_ios
-      sha256: "0040640ea1e96a260aecf90388239a8354898129bd7032848ccc6eba7efccf8e"
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.1.0"
-  moengage_cards_platform_interface:
-    dependency: transitive
-    description:
-      name: moengage_cards_platform_interface
-      sha256: f0e2f1f940dce2145800447701e91bf3b163fbddb3eb30924220adc6986e863a
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.0.1"
   moengage_flutter:
     dependency: "direct main"
     description:
@@ -208,6 +176,38 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.0.0"
+  moengage_inbox:
+    dependency: "direct main"
+    description:
+      name: moengage_inbox
+      sha256: e4f0b28fca90113336a8ea70127edb344cd48409e34a2196a3ba7a6843a9eda3
+      url: "https://pub.dev"
+    source: hosted
+    version: "9.1.0"
+  moengage_inbox_android:
+    dependency: transitive
+    description:
+      name: moengage_inbox_android
+      sha256: d10e7d90c7b4cb3c76cf9934da82ad93f9974acab7c13f8ce8f9d0d7d2b25936
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.1.0"
+  moengage_inbox_ios:
+    dependency: transitive
+    description:
+      name: moengage_inbox_ios
+      sha256: "0d668f6962047db7aacf134aa3bdcc783aa16e6ed6f621294dd19ef71ceb4ef9"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.1.0"
+  moengage_inbox_platform_interface:
+    dependency: transitive
+    description:
+      name: moengage_inbox_platform_interface
+      sha256: f50d4d1a3457ae2d37a6f6905090f034ac160047f3f83413f8fea7029612732a
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.0"
   path:
     dependency: transitive
     description:

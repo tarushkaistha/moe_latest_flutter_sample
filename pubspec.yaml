@@ -29,7 +29,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   moengage_flutter: ^10.1.0
-  moengage_cards: 6.1.0
+  moengage_inbox: 9.1.0
   flutter:
     sdk: flutter
 
