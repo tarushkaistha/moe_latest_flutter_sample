@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moengage_flutter/moengage_flutter.dart';
+import 'package:moengage_cards/moengage_cards.dart' as moe;
 import 'dart:async';
 
 void main() {
@@ -34,32 +35,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
 
-
-  void _onInAppClick(ClickData message) {
-    debugPrint("in-app click data : $message");
-
-      String navigationUrl = "";
-      Map<String, dynamic> kvPairs = {};
-    if (message.action is NavigationAction) {
-    NavigationAction navAction = message.action as NavigationAction;
-    navigationUrl = navAction.navigationUrl;
-    // kvPairs = navAction.keyValuePairs;
-  }
-  debugPrint("mOE Navigation URL is: $navigationUrl");
-  // debugPrint("moe kv pairs : $kvPairs");
-  }
- 
-  void _onInAppShown(InAppData message) {
-    debugPrint("in-app shown data : $message");
-  }
- 
-  void _onInAppDismiss(InAppData message) {
-    debugPrint("in-app dismiss data : $message");
-  }
-
   final MoEngageFlutter _moengagePlugin =
       MoEngageFlutter("Z1UDNSWJALFR3UTPWWMCSF5Z");
 
+  moe.MoEngageCards cards = moe.MoEngageCards("Z1UDNSWJALFR3UTPWWMCSF5Z");
 
 
   @override
@@ -70,17 +49,13 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
     debugPrint('$tag initState() : start ');
     _moengagePlugin.configureLogs(LogLevel.VERBOSE);
 
-    _moengagePlugin.setInAppClickHandler(_onInAppClick);
-    _moengagePlugin.setInAppShownCallbackHandler(_onInAppShown);
-    _moengagePlugin.setInAppDismissedCallbackHandler(_onInAppDismiss);
-
     _moengagePlugin.initialise();
 
-    //_moengagePlugin.setCurrentContext(["abc"]);
+    cards.setSyncCompleteListener((moe.SyncCompleteData? data) {
+      debugPrint('Cards Sync Listener: $data');
+    });
 
-    _moengagePlugin.showInApp();
-
-    //_moengagePlugin.showNudge();
+    cards.initialize();
   
     debugPrint('initState() : end ');
   }
@@ -164,7 +139,96 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                   _moengagePlugin.trackEvent("MarvelMutliverse",marvelproperties);
                 },
               child: const Text('Click to track user attributes and events in flutter MoE'),
-            )
+            ),
+
+            OutlinedButton(
+              style: OutlinedButton.styleFrom(
+                  foregroundColor: Colors.blue,
+                ),
+              onPressed: () async{ 	
+                	final moe.CardsData data = await cards.fetchCards();
+                      debugPrint(
+                          "Empty State Cards data: ${data.staticImagesAccessibilityData?[moe.StaticImageType.emptyState]}");
+                      debugPrint(
+                          'Fetched Cards API response: ${data.toString()}');
+                      debugPrint(
+                          'Static Image Accessibility Data: ${data.staticImagesAccessibilityData.toString()}');
+                },
+              child: const Text('Click to get all push notifications in your inbox'),
+            ),
+            OutlinedButton(
+              style: OutlinedButton.styleFrom(
+                  foregroundColor: Colors.blue,
+                ),
+              onPressed: () async{ 	
+                	// InboxData? data = await _moEngageInbox.fetchAllMessages();
+                  // if(data != null){
+                  //   print("my inbox data : $data");
+                  //   if(data.messages.isNotEmpty){
+                  //       for(final InboxMessage message in data.messages){
+                  //         print("clicked notifications in my inbox with following messages : $message");
+                  //         _moEngageInbox.trackMessageClicked(message);
+                  //       }
+                  //   }
+                  // }
+                },
+              child: const Text('Click to track push notifications on MoE db'),
+            ),
+            OutlinedButton(
+              style: OutlinedButton.styleFrom(
+                  foregroundColor: Colors.blue,
+                ),
+              onPressed: () async{ 	
+                	// int count = await _moEngageInbox.getUnClickedCount();
+                  // print("i have these much uncklicked notifications : $count");
+                  // Fluttertoast.showToast(
+                  //   msg: "i have these much uncklicked notifications : $count",
+                  //   toastLength: Toast.LENGTH_SHORT,
+                  //   gravity: ToastGravity.BOTTOM,
+                  //   timeInSecForIosWeb: 1,
+                  //   backgroundColor: Colors.red,
+                  //   textColor: Colors.white,
+                  //   fontSize: 12.0
+                  // );
+                },
+              child: const Text('Click to get unclicked push notifications'),
+            ),
+            OutlinedButton(
+              style: OutlinedButton.styleFrom(
+                  foregroundColor: Colors.blue,
+                ),
+              onPressed: () async{ 	
+                	// InboxData? data = await _moEngageInbox.fetchAllMessages();
+                  // if(data!.messages.isNotEmpty){
+                  //       for(final InboxMessage message in data.messages){
+                  //         print("deleted notifications in my inbox : $message");
+                  //         _moEngageInbox.deleteMessage(message);
+                  //         Fluttertoast.showToast(
+                  //           msg: "deleted notification(s) : $message",
+                  //           toastLength: Toast.LENGTH_SHORT,
+                  //           gravity: ToastGravity.BOTTOM,
+                  //           timeInSecForIosWeb: 1,
+                  //           backgroundColor: Colors.blue,
+                  //           textColor: Colors.white,
+                  //           fontSize: 12.0
+                  //         );
+                  //       }
+                  //   }
+                  //   else {
+                  //     Fluttertoast.showToast(
+                  //           msg: "add push notifications in inbox to delete : ${data.messages.length}",
+                  //           toastLength: Toast.LENGTH_SHORT,
+                  //           gravity: ToastGravity.BOTTOM,
+                  //           timeInSecForIosWeb: 1,
+                  //           backgroundColor: Colors.amberAccent,
+                  //           textColor: Colors.white,
+                  //           fontSize: 12.0
+                  //         );
+                  //   }
+                },
+              child: const Text('Click to delete push notifications from your inbox'),
+            ),
+
           ],
         ),
       )
